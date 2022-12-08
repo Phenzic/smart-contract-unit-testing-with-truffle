@@ -2,24 +2,21 @@
 
 pragma solidity ^0.8.17;
 
-contract sample {
+contract Sample {
     string public name;
     address public owner;
-    uint256 public age;
 
     constructor() {
         owner = msg.sender;
-        name = "contract's deployer";
-        age = 25;
+        name = "deployer";
     }
 
-    function describe(string memory _name, uint256 _number) public {
+    function rename(string memory _name) public {
         name = _name;
-        age = _number;
     }
 
-    function details() public view returns (string memory, uint256) {
-        return (name, age);
+    function describe() public view returns (string memory) {
+        return (name);
     }
 
     modifier ownerOnly() {
