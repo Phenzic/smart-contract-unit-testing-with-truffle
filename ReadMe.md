@@ -28,7 +28,7 @@ You’ll notice a new file structure appears in your file explorer, something li
 ![truffle_init](https://user-images.githubusercontent.com/69092079/206867332-0a1c4244-b0df-4211-8c68-efe50dd44990.jpg)
 
 
-Running a Contract Test Simulation
+# Running a Contract Test Simulation
 To understand how unit testing works using the Truffle suite create a demo directory, different from your main directory, and run the command `npx truffle unbox  metacoin`. The result of the successful run of the code should look like the image below.
 
 ![creating_metacoin](https://user-images.githubusercontent.com/69092079/206867360-6d2057de-beb0-4826-82c9-68c2cdf2eafe.jpg)
@@ -195,7 +195,9 @@ Now that you have created the `Sample.sol` contract, you can now begin writing t
 A very common pattern used when writing unit tests for smart contracts is:
                                               
 a. *Arrange*: This is where you create dummy variables that you’ll need to run units of your test cases. They can be created globally after the contract test function s created or locally within the unit test.
+
 b. *Act*: Next, is the part where you run your testing functions and store the result in a variable.
+
 c. *Assert*:  Since you already know the correct result of the test, then you compare your expected result with the response of the test you ran. If the test returns the expected result, it passes else the test does not pass.
                                               
 Also following the format:
@@ -367,6 +369,8 @@ Finally, run the command `npx truffle test` and a successful result should look 
 
 After completing your test script, your code should look exactly like the one below.
 For uniformity, sake replaces the entire code with this code test.
+
+```JavaScript
 const Sample = artifacts.require("Sample");
  
 contract("Sample", (accounts) => {
@@ -443,7 +447,8 @@ contract("Sample", (accounts) => {
       });
     });
 });
- 
+
+```
 
 
 
@@ -465,9 +470,3 @@ Here is some other tutorial article.
 A software Engineer and technical writer who is always open to working on new ideas. I enjoy working on [GitHub](https://github.com/Julius170/) and you could also find out what I tweet about and connect with me on [Twitter](https://twitter.com/JuliusAyoola1) 
 # References
 Here is a [link](https://github.com/Julius170/smart-contract-unit-testing-with-truffle) to the complete tutorial sample code on my GitHub, Leave a ⭐on the repository if you find it helpful.
-
-
-
-
-
-
