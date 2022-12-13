@@ -40,20 +40,20 @@ Now run the command `npx truffle test` and the result of the unit test should lo
 ![demo_testing](https://user-images.githubusercontent.com/69092079/206870915-91ab3652-24a9-4872-92ce-59dc2850ca66.jpg)
 
 
-Truffle first compiles the contract and then runs all the unit tests in the test script and finally returns the result of all the tests. The image above shows the result when it passes all the unit tests.
+Truffle first compiles the contract, runs all the unit test in the test script, and returns the result of all the tests. The image above shows the result when it passes all the unit tests.
 
 # Creating the Smart Contract
   
-Each contract test made is composed explicitly to test a specific contract,  meaning if you have four different contract files in an application, your application ought to likewise have four test scripts for testing each contract.
-In the following couple of steps, you'll write a simple sample contract which you'll, later on, be writing a test script for.
+Each contract test made is composed explicitly to test a specific contract,  meaning if you have four different contract files in an application, your application should likewise have four test scripts for testing each contract.
+In the following steps, you'll write a simple sample contract which you'll, later be writing a for.
 
 ***Note: If you’re new to solidity and creating smart contracts, check out [this](https://phensics.hashnode.dev/the-basic-solidity-guide) tutorial to get started and understand solidity code.
 The tutorial above also has a couple of functions that will help you learn how to write solidity code***.
 
-1. Head back to the initial development environment directory you created, inside the contract folder, create a new file `Sample.sol`. This will be the smart contract you’ll be writing unit tests for.
+1. Head back to the initial development environment directory you created; inside the contract folder, create a new file, `Sample.sol`. This will be the smart contract you’ll be writing unit tests for.
 
-2. The Sample.sol contract will have the following functionalities:
-a. First, the contract is created and the variables, `name`, and `age` are also created, and by default have no value.
+2. The `Sample.sol` contract will have the following functionalities:
+a. First, the contract is created, and the variables `name`, and `age` are also created and by default, have no value.
   
 ```Solidity
 // SPDX-License-Identifier: MIT
@@ -76,7 +76,7 @@ b. Next, the contract’s constructor function assigns the address of the deploy
     }
  ```
 
-c. The next function `describe` accepts a string value and an integer value as arguments and assigns them to the variable `name`.
+c. The next function `rename` accepts a string value as argument and assigns it to the variable `name`.
 ```solidity
   
   function rename(string memory _name) public {
@@ -84,7 +84,7 @@ c. The next function `describe` accepts a string value and an integer value as a
     }
 ```
 
-d. The next function `details` simply return the current values of the global variable, `name`.
+d. The next function `describe` simply return the current values of the global variable, `name`.
   
 ```solidity
   
@@ -93,7 +93,7 @@ d. The next function `details` simply return the current values of the global va
     }
 ```
 
-e. Next is a modifier function `ownerOnly` that only allows the owner of the contract to call its parent function when added to any function.
+e. Next is a modifier function `ownerOnly` that only allows the contract owner to call its parent function when added to any function.
 ```solidity
     modifier ownerOnly() {
         require(
@@ -115,7 +115,7 @@ f. The following function `changeOwner` uses the previously created `ownerOnly` 
   
 
 
-g. The next function `deposit` simply allows anyone to send a minimum of *1 ETH* to the contract.
+g. The next function `deposit` allows anyone to send a minimum of *1 ETH* to the contract.
 ```solidity
     function deposit() public payable {
         require(
@@ -125,7 +125,7 @@ g. The next function `deposit` simply allows anyone to send a minimum of *1 ETH*
     }
 ```
 
-h. Finally, the last function in the `Sample.sol` contract allows anyone calling the contract to withdraw funds from the contract, as long as you pass in the number of tokens to withdraw as an argument. This transaction will also be terminated if the amount passed in is greater than *10 ETH*.
+h. Finally, the last function in the `Sample.sol` contract allows anyone calling the contract to withdraw funds from the contract, as long as you pass in the number of tokens to withdraw as an argument. This transaction will also be terminated if the amount passed in exceeds than *10 ETH*.
 ```solidity
     function withdraw(uint256 _amount) public payable {
         require(_amount <= 100000000000000000);
@@ -133,7 +133,7 @@ h. Finally, the last function in the `Sample.sol` contract allows anyone calling
     }
 ```
 
-If you’ve completed your Sample.sol contract, Your smart contract should look exactly like the code below, You should update your contract with the code below for uniformity sake:
+If you’ve completed your `Sample.sol` contract, Your smart contract should look exactly like the code below; You should update your contract with the code below for uniformity sake:
 ```solidity
 // SPDX-License-Identifier: MIT
  
@@ -182,15 +182,15 @@ contract Sample {
 }
 ```
 
-To confirm you have no existing errors in your contract, run the command `npx truffle compile` on your terminal and a successful result should look like the image below.
+To confirm you have no existing errors in your contract, run the command `npx truffle compile` on your terminal, and a successful result should look like the image below.
 ![compiling_contract](https://user-images.githubusercontent.com/69092079/206871446-9219cf8b-727d-4750-b88a-11739d9c27d6.jpg)
 
 
-Now that you know the different functions in the sample.sol contract and you’re familiar with what they do. Next, you’ll learn how to create a unit test script to test subsections of the contract you just made.
+Now that you know the different functions in the `Sample.sol` contract and you’re familiar with what they do. Next, you’ll learn how to create a unit test script to test subsections of the contract you just made.
 
 # Writing the Unit Test Script
 
-Now that you have created the `Sample.sol` contract, you can now begin writing the unit tests for the contract. After completing these tests you’ll have a basic idea of how to create unit tests for smart contracts.
+Now that you have created the `Sample.sol` contract, you can begin writing the unit tests for the contract. After completing these tests, you’ll have a basic idea of how to create unit tests for smart contracts.
                                               
 A very common pattern used when writing unit tests for smart contracts is:
                                               
@@ -198,7 +198,7 @@ a. *Arrange*: This is where you create dummy variables that you’ll need to run
 
 b. *Act*: Next, is the part where you run your testing functions and store the result in a variable.
 
-c. *Assert*:  Since you already know the correct result of the test, then you compare your expected result with the response of the test you ran. If the test returns the expected result, it passes else the test does not pass.
+c. *Assert*:  Since you already know the correct result of the test, then you compare your expected result with the response of the test you ran. If the test returns the expected result, it passes else, the test does not pass.
                                               
 Also following the format:
 ```JavaScript 
@@ -213,7 +213,7 @@ Also following the format:
     });
 ```
   
-Next, you’ll be creating a uint-test to test your sample.sol contract using the previous format above, and you’ll learn how to create a basic unit test script on your own:
+Next, you’ll be creating a uint-test to test your `Sample.sol` contract using the previous format above, and you’ll learn how to create a basic unit test script on your own:
 
 Testing a smart contract makes it easier to identify bugs and vulnerabilities and reduces the possibility of software errors that could lead to costly exploits.
 In the next few steps, you will learn the basic format of how to write unit tests based on your smart contract.
@@ -235,14 +235,14 @@ module.exports = function (deployer) {
 
 
 The code above is created to simply deploy your `Sample.sol` contract. 
-Next, navigate to the `test` folder and create a new test script `SampleTest.js`.
+Next, navigate to the `test` folder and create a new test script, `SampleTest.js`.
 
-1. Firstly you’ll need to import the contract as a variable `Sample` in the first line of code.
+1. Firstly, you’ll need to import the contract as a variable `Sample` in the first line of code.
 ```JavaScript 
 const Sample = artifacts.require("Sample");
 ```
 
-2. Next, you’ll need to initialize the contract test with the following code below. This contract names Sample will cover all the unit test functions that will be carried out on the named contract.
+2. Next, you’ll need to initialize the contract test with the following code below. This contract - Sample will cover all the unit test functions that will be carried out on the named contract.
 ```JavaScript 
 contract("Sample", (accounts) => {
 })
@@ -269,12 +269,12 @@ const sample = await Sample.deployed();
 The function has two tests with string descriptions of what each of them is meant to do.
 The first test check for the initialization of the `name` variable and checks the value of the owner variable to the address of the deployer. The test passes if the result returns as expected and reverts with an error otherwise.
 
-Now, run the command `npx truffle test` and a successful result should look like the image below.
+Now, run the command `npx truffle test`, and a successful result should look like the image below.
 ![test(2)](https://user-images.githubusercontent.com/69092079/206874950-bafc9f03-3188-4abf-8df4-e907372b48d2.jpg)
 
 
-4. The next unit test describes the `rename` and `describe` function from the smart contract, the function carries out a single test on the `rename` and `describe` function. 
-The test updates the value of the name variable and checks the current value of the variable if it’s been updated. Copy and add the code below.
+4. The next unit test describes the `rename` and `describe` function from the smart contract; the function carries out a single test on the `rename` and `describe` function. 
+The test updates the name variable's value and checks the current the variable's current value if it has been updated. Copy and add the code below.
   
 ```JavaScript
   describe("rename & describe", async function () {
@@ -291,7 +291,7 @@ Now, run the command `npx truffle test` and a successful result should look like
 
 ![test(1)](https://user-images.githubusercontent.com/69092079/206875087-734786bf-b31b-4ea6-b0c3-7db045c1d982.jpg)
 
-5. The next unit test describes the `changeOwner` function in the smart contract, the test first uses the right address to attempt to change the owner, which should pass successfully. And then uses another random address to change the ownership role, which is meant to be reverted.
+5. The next unit test describes the `changeOwner` function in the smart contract; the test first uses the right address to attempt to change the owner, which should pass successfully. And then uses another random address to change the ownership role, which is meant to be reverted.
 Copy and add the code below.
 
 ```JavaScript
@@ -320,7 +320,7 @@ Now, run the command `npx truffle test` and a successful result should look like
 ![test(3)](https://user-images.githubusercontent.com/69092079/206875185-f08b1bcc-e9bc-48cf-9694-103f6641a88c.jpg)
 
 
-6. The next function tests the `deposit` function of the contract. The first test will verify the deposit function correctly allows deposits of 0.01 ETH or greater. The second test verifies that the deposit function correctly rejects deposits of less than 0.01 ETH. Copy and paste the code below.
+6. The next function tests the `deposit` function of the contract. The first test will verify the deposit function works correctly which allows deposits of 0.01 ETH or greater. The second test verifies that the deposit function correctly rejects deposits of less than 0.01 ETH. Copy and paste the code below.
 ```JavaScript
   describe("deposit", async function () {
     it("should allow deposits", async () => {
@@ -343,7 +343,7 @@ Now, run the command `npx truffle test` and a successful result should look like
 
 ![test(4)](https://user-images.githubusercontent.com/69092079/206875243-bc86bd7d-768e-4726-90d7-0e02ea996409.jpg)
 
-7. This next describe function tests the `withdraw` function in the contract. The first test is attempting to withdraw 0.01 ether from the contract. The second test is attempting to withdraw an amount that is greater than the balance to ensure that the withdrawal fails. If the test fails, it will return an error message that includes the word `revert`.
+7. This next describe function tests the `withdraw` function in the contract. The first test is attempting to withdraw 0.01 ether from the contract. The second test is attempting to withdraw an amount greater than the balance to ensure that the withdrawal fails. If the test fails, it will return an error message with the word `revert`.
 ```JavaScript
   describe("withdraw", async function () {
     it("should allow withdrawals", async () => {
@@ -457,7 +457,7 @@ contract("Sample", (accounts) => {
 
 # Conclusion
 Writing unit tests for smart contracts can help a great deal in ensuring a secure and proficient contract, by suggesting fixes and improvements after discovering errors, issues, and security vulnerabilities in your contract. 
-You have successfully created your unit test script for a simple sample contract using truffle. Now that you understand how unit tests are written you can move on to writing more complex test scripts for other smart contracts.
+You have successfully created your unit test script for a simple sample contract using truffle. Now that you understand how unit tests are written, you can move on to writing more complex test scripts for other smart contracts.
 You can also read about how to run the unit test for smart contracts using Truffle.
 
 # Next Steps
@@ -467,6 +467,6 @@ Here is some other tutorial article.
 # About the Author
 ***Mayowa Julius Ogungbola***
 
-A software Engineer and technical writer who is always open to working on new ideas. I enjoy working on [GitHub](https://github.com/Julius170/) and you could also find out what I tweet about and connect with me on [Twitter](https://twitter.com/JuliusAyoola1) 
+A Software Engineer and technical writer who is always open to working on new ideas. I enjoy working on [GitHub](https://github.com/Julius170/), and you could also find out what I tweet about and connect with me on [Twitter](https://twitter.com/JuliusAyoola1) 
 # References
 Here is a [link](https://github.com/Julius170/smart-contract-unit-testing-with-truffle) to the complete tutorial sample code on my GitHub, Leave a ⭐on the repository if you find it helpful.
