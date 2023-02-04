@@ -1,5 +1,3 @@
-
-
 # How to Write Unit Testing for Smart Contracts with Truffle
 
 # Introduction
